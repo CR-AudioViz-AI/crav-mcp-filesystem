@@ -34,7 +34,7 @@ const logger = winston.createLogger({
 
 // Initialize Express app
 const app = express();
-const PORT = process.env.PORT || 3003;
+const PORT = parseInt(process.env.PORT || '3003', 10);
 
 // Storage configuration
 const STORAGE_PATH = process.env.STORAGE_PATH || '/tmp/javari-builds';
@@ -522,7 +522,7 @@ app.use((req: Request, res: Response) => {
 });
 
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   logger.info(`File System MCP Server running on port ${PORT}`);
   logger.info('Storage path:', STORAGE_PATH);
   logger.info('Max file size:', MAX_FILE_SIZE, 'bytes');
